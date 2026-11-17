@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -37,5 +38,18 @@ public class PlayerController : MonoBehaviour
                 rb.AddForce(Vector3.up * moveStats.jumpForce, ForceMode.Impulse);
             }
         }
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("EXIT"))
+        {
+            SceneManager.LoadScene("Win");
+        }
+
+        /*if (other.CompareTag("GroundPlataformas"))
+        {
+            SceneManager.LoadScene("Lose");
+        }*/
     }
 }
