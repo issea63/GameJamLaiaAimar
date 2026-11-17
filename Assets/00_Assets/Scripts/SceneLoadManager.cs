@@ -9,13 +9,13 @@ public class SceneLoadManager : MonoBehaviour
 
     public void LoadRandomLevel()
     {
-        levelRandom = Random.Range(1, 5);
+        levelRandom = Random.Range(1, 4);
         if(levelRandom == 4)
         {
             finalLevelProbability = Random.Range(0, 100);
             if (finalLevelProbability < levelProbChance * 100)
             {
-                levelRandom = Random.Range(1, 4);
+                levelRandom = Random.Range(1, 3);
             }
             else levelRandom = 4;
         }
