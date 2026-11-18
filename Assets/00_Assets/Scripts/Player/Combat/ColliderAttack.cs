@@ -6,7 +6,12 @@ public class ColliderAttack : MonoBehaviour
 
     private void Start()
     {
-        playerCombatStats = GetComponentInParent<PlayerCombatStats>();
+        playerCombatStats = PlayerCombatStats.Instance;
+        if(playerCombatStats == null)
+        {
+            GameObject playerMovementObject = new GameObject("PlayerCombatStats");
+            playerCombatStats = playerMovementObject.AddComponent<PlayerCombatStats>();
+        }
     }
 
     private void OnTriggerEnter(Collider other)

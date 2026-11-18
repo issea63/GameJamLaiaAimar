@@ -18,10 +18,10 @@ public class GroundCheck : MonoBehaviour
             playerController.isGrounded = true;
     }
 
-    private void OnTriggerExit(Collider other)
+    /*private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.layer == groundLayer)
             playerController.isGrounded = false;
-    }
+    }*/
 
 }
