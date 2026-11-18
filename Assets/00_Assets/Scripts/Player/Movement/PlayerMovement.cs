@@ -3,12 +3,18 @@ using UnityEngine.SceneManagement;
 
 public class PlayerMovement : Stats
 {
-    public float speed = 3f;
-    public float jumpForce = 1.5f;
+    public float speed = 15f;
+    public float jumpForce = 6f;
     #region Singleton
     public static PlayerMovement Instance;
     private void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         Instance = this;
         DontDestroyOnLoad(gameObject);
     }

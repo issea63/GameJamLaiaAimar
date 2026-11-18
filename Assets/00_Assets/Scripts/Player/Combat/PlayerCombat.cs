@@ -9,7 +9,7 @@ public class PlayerCombat : MonoBehaviour
     public AudioSource attackSound;
     private void Start()
     {
-        combatStats = GetComponent<PlayerCombatStats>();
+        combatStats = PlayerCombatStats.Instance;
     }
     public void Attack()
     {

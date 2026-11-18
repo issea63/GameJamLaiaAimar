@@ -64,6 +64,7 @@ public class EnemyController : MonoBehaviour
                 walkSound.pitch = Random.Range(0.8f, 1.2f);
                 walkSound.Play();
             }
+            else walkSound.Stop();
         }
         else
         {

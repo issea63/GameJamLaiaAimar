@@ -4,6 +4,14 @@ public class PlayerCombatStats : Stats
 {
     public float damage = 15f;
     public float cooldown = 1f;
+    #region Singleton
+    public static PlayerCombatStats Instance;
+    private void Awake()
+    {
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
+    #endregion
     private void Start()
     {
         SetStat(ref damage, 0);
