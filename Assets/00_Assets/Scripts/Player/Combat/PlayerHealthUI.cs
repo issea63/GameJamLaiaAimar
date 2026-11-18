@@ -7,6 +7,13 @@ public class PlayerHealthUI : MonoBehaviour
     Image healthBarFill;
     public void UpdateHealthBar(float currentHealth, float maxHealth)
     {
-        healthBarFill.fillAmount = currentHealth / maxHealth;
+        if (healthBarFill != null)
+        {
+            healthBarFill.fillAmount = currentHealth / maxHealth;
+        }
+        else
+        {
+            return;
+        }
     }
 }

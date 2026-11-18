@@ -85,7 +85,7 @@ public class EnemyController : MonoBehaviour
         agent.SetDestination(patrolPoints[patrolIndex].position);
         if (walkSound != null && !agentStopped)
         {
-            walkSound.pitch = Random.Range(0.8f, 1.2f);
+            //walkSound.pitch = Random.Range(0.8f, 1.2f);
             walkSound.Play();
         }
         else return;
