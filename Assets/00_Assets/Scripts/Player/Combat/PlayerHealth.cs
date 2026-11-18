@@ -8,6 +8,8 @@ public class PlayerHealth : Stats
     float currentHealth;
     PlayerHealthUI healthUI;
 
+    public AudioSource hitSound;
+
     private void Start()
     {
         healthUI = GetComponent<PlayerHealthUI>();
@@ -18,6 +20,7 @@ public class PlayerHealth : Stats
     {
         SetStat(ref currentHealth, -damage);
         healthUI.UpdateHealthBar(currentHealth, maxHealth);
+        hitSound.Play();
         if(currentHealth <= 0)
         {
             Die();

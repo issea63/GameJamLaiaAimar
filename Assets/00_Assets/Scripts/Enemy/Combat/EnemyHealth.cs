@@ -7,6 +7,9 @@ public class EnemyHealth : Stats
     [SerializeField]
     float currentHealth;
     EnemyHealthUI healthUI;
+
+    public AudioSource enemyHitSound;
+
     private void Start()
     {
         healthUI = GetComponent<EnemyHealthUI>();
@@ -17,6 +20,7 @@ public class EnemyHealth : Stats
     {
         SetStat(ref currentHealth, -damage);
         healthUI.UpdateHealthBar(currentHealth, maxHealth);
+        enemyHitSound.Play();
         if(currentHealth <= 0)
         {
             Die();

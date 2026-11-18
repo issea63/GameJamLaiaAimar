@@ -61,7 +61,7 @@ public class EnemyController : MonoBehaviour
             }
             if (walkSound != null && !agentStopped)
             {
-                walkSound.pitch = Random.Range(0.8f, 1.2f);
+                //walkSound.pitch = Random.Range(0.8f, 1.2f);
                 walkSound.Play();
             }
         }

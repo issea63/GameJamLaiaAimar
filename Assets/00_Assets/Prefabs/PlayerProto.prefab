@@ -355,6 +355,7 @@ MonoBehaviour:
   levelProbChance: 0.1
   cinemachineBasicMultiChannelPerlin: {fileID: 0}
   doorOpens: []
+  elevatorSound: {fileID: 0}
 --- !u!54 &6933506555611104569
 Rigidbody:
   m_ObjectHideFlags: 0
