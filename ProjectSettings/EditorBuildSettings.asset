@@ -9,18 +9,18 @@ EditorBuildSettings:
     path: Assets/00_Assets/Scenes/MainMenu.unity
     guid: d42ad212fecff93479e50255e4102de5
   - enabled: 1
-    path: Assets/00_Assets/Scenes/NivelSalida.unity
-    guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 1
     path: Assets/00_Assets/Scenes/NivelEtsaiak.unity
     guid: d1a0ca480bddeba42ae2c8d37f4934a2
   - enabled: 1
     path: Assets/00_Assets/Scenes/NivelPlataformas.unity
     guid: b6512d47b5416ce47a9678edac41d40d
   - enabled: 1
+    path: Assets/00_Assets/Scenes/NivelSalida.unity
+    guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
     path: Assets/00_Assets/Scenes/Win.unity
     guid: d40a40976ebfc9f4588a0b8f1e4c0444
-  - enabled: 0
+  - enabled: 1
     path: Assets/00_Assets/Scenes/Lose.unity
     guid: c4941ecaa96e3274eb5dbb48f20562e5
   m_configObjects:

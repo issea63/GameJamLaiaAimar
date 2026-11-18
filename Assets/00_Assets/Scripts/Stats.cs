@@ -2,16 +2,13 @@ using UnityEngine;
 
 public class Stats : MonoBehaviour
 {
-    public virtual void SetStat(float oldStat, float newStat)
+    public virtual void SetStat(ref float stat, float amount)
     {
-        oldStat += newStat;
+        stat += amount;
     }
-    public virtual void ResetStat(float stat, float originalStat)
+
+    public virtual void ResetStat(ref float stat, float originalStat)
     {
         stat = originalStat;
-    }
-    public virtual void ReadStat(float stat)
-    {
-
     }
 }
