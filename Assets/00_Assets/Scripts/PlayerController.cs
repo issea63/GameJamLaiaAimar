@@ -47,9 +47,9 @@ public class PlayerController : MonoBehaviour
             SceneManager.LoadScene("Win");
         }
 
-        /*if (other.CompareTag("GroundPlataformas"))
+        if (other.CompareTag("GroundPlataformas"))
         {
             SceneManager.LoadScene("Lose");
-        }*/
+        }
     }
 }
