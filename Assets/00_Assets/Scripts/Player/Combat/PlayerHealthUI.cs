@@ -7,9 +7,13 @@ public class PlayerHealthUI : MonoBehaviour
     Image healthBarFill;
     private void Start()
     {
-        if(healthBarFill == null)
+        if (healthBarFill == null)
         {
             healthBarFill = GameObject.Find("HealthBar").GetComponent<Image>();
+        }
+        else
+        {
+            return;
         }
     }
     public void UpdateHealthBar(float currentHealth, float maxHealth)
