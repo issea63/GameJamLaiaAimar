@@ -3,7 +3,12 @@ guid: f9f9bf44f1d81174e97a04ebc06f7a16
 ModelImporter:
   serializedVersion: 24600
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ProxyBC
+    second: {fileID: 2100000, guid: 067c266500c05954095906ad9c408ba9, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
