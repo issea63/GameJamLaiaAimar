@@ -9,6 +9,7 @@ public class ColliderScene : SceneLoadManager
     public AudioSource elevatorSound;
     private void Start()
     {
+        ResetLevelProbChance(.4f);
         cinemachineBasicMultiChannelPerlin = FindAnyObjectByType<CinemachineBasicMultiChannelPerlin>();
         
         doorOpens = FindObjectsByType<DoorOpen>();

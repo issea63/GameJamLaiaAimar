@@ -39,8 +39,8 @@ public class PlayerMovement : Stats
         Debug.Log($"Loaded scene: {scene.name} (mode: {mode})");
         if(SceneManager.GetActiveScene().name == "MainMenu")
         {
-            ResetStat(ref speed, 3f);
-            ResetStat(ref jumpForce, 1.5f);
+            ResetStat(ref speed, 8);
+            ResetStat(ref jumpForce, 5f);
         }
     }
 }

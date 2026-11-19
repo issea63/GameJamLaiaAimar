@@ -347,9 +347,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 213c32893c06a8e4cb9cd3b2471f9df9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneLoadManager
-  levelRandom: 0
-  finalLevelProbability: 0
-  levelProbChance: 0.1
+  levelProbChance: 0.4
 --- !u!4 &689757112
 Transform:
   m_ObjectHideFlags: 0
@@ -517,8 +515,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38b331be6dae4874ab14f98b556f0fe8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MovementPlayer
-  speed: 15
-  jumpForce: 6
+  speed: 8
+  jumpForce: 5
 --- !u!4 &895630832
 Transform:
   m_ObjectHideFlags: 0
@@ -543,28 +541,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 949597979}
-  - component: {fileID: 949597978}
+  - component: {fileID: 949597980}
   m_Layer: 0
-  m_Name: PlayerCombat
+  m_Name: PlayerCombatStats
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &949597978
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 949597977}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ef332e6529928746942351c8826b556, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerCombat
-  attackCollider: {fileID: 0}
-  attackSound: {fileID: 0}
 --- !u!4 &949597979
 Transform:
   m_ObjectHideFlags: 0
@@ -580,6 +564,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &949597980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 949597977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c561808e665e27342a186c5826a53e87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerCombatStats
+  damage: 15
+  cooldown: 1
 --- !u!1 &1153524911
 GameObject:
   m_ObjectHideFlags: 0

@@ -45,30 +45,23 @@ public class EnemyController : MonoBehaviour
     public void DetectPlayer()
     {
         Collider[] hits = Physics.OverlapSphere(transform.position,detectionRange,playerLayer);
-
+        agent.isStopped = false;
         if (hits.Length > 0)
         {
             isPatrolling = false;
             playerDetected = true;
             agent.SetDestination(hits[0].transform.position);
-            if(Vector3.Distance(transform.position, hits[0].transform.position) <= enemyCombatStats.attackRange)
-            {
-                agent.isStopped = true;
-                if (enemyCombatStats != null)
-                {
-                    combat.AttackPlayer();
-                }
-            }
             if (walkSound != null && !agentStopped)
             {
                 //walkSound.pitch = Random.Range(0.8f, 1.2f);
                 walkSound.Play();
             }
-            else walkSound.Stop();
+            else Debug.LogWarning("No walk sound assigned to the enemy.");
         }
         else
         {
             playerDetected = false;
+            agent.isStopped = false;
             Patrol();
         }
     }
@@ -88,7 +81,7 @@ public class EnemyController : MonoBehaviour
             //walkSound.pitch = Random.Range(0.8f, 1.2f);
             walkSound.Play();
         }
-        else return;
+        else Debug.LogWarning("No walk sound assigned to the enemy.");
     }
     public void OnDrawGizmos()
     {

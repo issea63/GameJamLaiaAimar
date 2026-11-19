@@ -7,12 +7,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private PlayerMovement moveStats;
     private Vector2 movementInput;
-
+    Rigidbody rb;
     public bool isGrounded = true;
     public AudioSource jumpSound;
     public AudioSource walkSound;
+    Transform cameraTransform;
     private void Start()
     {
+        cameraTransform = Camera.main.transform;
+        rb = GetComponent<Rigidbody>();
         if(PlayerMovement.Instance == null)
         {
             GameObject playerMovementObject = new GameObject("PlayerMovement");
@@ -31,15 +34,21 @@ public class PlayerController : MonoBehaviour
         }
         else walkSound.Stop();
     }
-
-    private void Update()
+    void FixedUpdate()
     {
-        float moveX = movementInput.x * moveStats.speed * Time.deltaTime;
-        float moveZ = movementInput.y * moveStats.speed * Time.deltaTime;
+        Vector3 forward = cameraTransform.forward;
+        Vector3 right = cameraTransform.right;
 
-        transform.Translate(moveX, 0, moveZ);
+        forward.y = 0f;
+        right.y = 0f;
+        forward.Normalize();
+        right.Normalize();
 
-        gameObject.transform.rotation = Quaternion.Euler(0, Camera.main.transform.eulerAngles.y, 0);
+        Vector3 direction = forward * movementInput.y + right * movementInput.x;
+        direction = Vector3.ClampMagnitude(direction, 1f);
+
+        rb.linearVelocity = new Vector3(direction.x * moveStats.speed, rb.linearVelocity.y, direction.z * moveStats.speed);
+        gameObject.transform.rotation = Quaternion.Euler(0f, cameraTransform.localRotation.eulerAngles.y, 0f);
     }
     public void OnJump(InputAction.CallbackContext input)
     {

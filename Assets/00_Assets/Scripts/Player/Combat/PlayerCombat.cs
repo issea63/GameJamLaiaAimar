@@ -1,33 +1,52 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
 {
-    PlayerCombatStats combatStats;
-    public BoxCollider attackCollider;
-    public AudioSource attackSound;
-    private void Start()
+    [SerializeField] private BoxCollider attackCollider;
+    [SerializeField] private AudioSource attackSound;
+    [SerializeField] private float cooldownDuration = 1f;
+    [SerializeField] private float attackDuration = 0.5f;
+
+    private PlayerCombatStats combatStats;
+    private bool canAttack = true;
+
+    private void Awake()
     {
         combatStats = PlayerCombatStats.Instance;
+
+        if (combatStats == null)
+            Debug.LogError("No se encontró PlayerCombatStats.Instance.", this);
+
+        if (attackCollider == null)
+            Debug.LogError("Falta asignar attackCollider en el Inspector.", this);
+
+        if (attackCollider != null)
+            attackCollider.enabled = false;
     }
+
     public void Attack()
     {
-        StartCoroutine(attackRoutine());
+        if (!canAttack || attackCollider == null)
+            return;
+
+        StartCoroutine(AttackRoutine());
     }
-    public IEnumerator attackRoutine()
+
+    private IEnumerator AttackRoutine()
     {
-        if (combatStats.cooldown <= 0)
-        {
-            attackCollider.enabled = true;
-            combatStats.cooldown = 1f;
-            yield return new WaitForSeconds(0.5f);
-            attackCollider.enabled = false;
-            if (attackSound != null)
-            {
-                attackSound.Play();
-            }
-            else attackCollider.enabled = false; yield break;
-        }
+        canAttack = false;
+        attackCollider.enabled = true;
+
+        if (attackSound != null)
+            attackSound.Play();
+
+        yield return new WaitForSeconds(attackDuration);
+
+        attackCollider.enabled = false;
+
+        yield return new WaitForSeconds(cooldownDuration);
+
+        canAttack = true;
     }
 }

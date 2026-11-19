@@ -1,14 +1,18 @@
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyCombat : MonoBehaviour
 {
     EnemyCombatStats enemyCombatStats;
     EnemyController enemyController;
     public AudioSource attackSound;
+    NavMeshAgent agent;
     private void Start()
     {
         enemyCombatStats = GetComponent<EnemyCombatStats>();
         enemyController = GetComponent<EnemyController>();
+        agent = GetComponent<NavMeshAgent>();
     }
     private void Update()
     {
@@ -23,16 +27,32 @@ public class EnemyCombat : MonoBehaviour
     }
     public void AttackPlayer()
     {
-        if(enemyCombatStats.cooldown <= 0)
+        Collider[] hits = Physics.OverlapSphere(transform.position, enemyCombatStats.attackRange, enemyController.playerLayer);
+
+        if (enemyCombatStats.cooldown > 0 || hits.Length == 0)
         {
-            PlayerHealth playerHealth = FindAnyObjectByType<PlayerHealth>();
-            playerHealth.TakeDamage(enemyCombatStats.damage);
-            enemyCombatStats.ResetStat(ref enemyCombatStats.cooldown, 1f);
-            if(attackSound != null)
-            {
-                attackSound.Play();
-            }
-            else return;
+            agent.isStopped = false;
+            enemyController.DetectPlayer();
+            return;
         }
+
+        PlayerHealth playerHealth = hits[0].GetComponentInParent<PlayerHealth>();
+
+        if (playerHealth == null)
+        {
+            agent.isStopped = false;
+            enemyController.DetectPlayer();
+            return;
+        }
+
+        playerHealth.TakeDamage(enemyCombatStats.damage);
+        enemyCombatStats.SetStat(ref enemyCombatStats.cooldown, 3f);
+        agent.isStopped = true;
+        
+
+        if (attackSound != null)
+            attackSound.Play();
+        else
+            Debug.LogWarning("No attack sound assigned to the enemy.");
     }
 }

@@ -871,8 +871,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyCombatStats
   damage: 10
-  cooldown: 1
-  attackRange: 1
+  cooldown: 3
+  attackRange: 3.5
 --- !u!195 &309820491103249698
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -935,6 +935,7 @@ GameObject:
   - component: {fileID: 8073856015737866171}
   - component: {fileID: 7668100448370991985}
   - component: {fileID: 8069399303035734194}
+  - component: {fileID: 3928181342657204554}
   m_Layer: 5
   m_Name: EnemyCanvas
   m_TagString: Untagged
@@ -1027,3 +1028,15 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &3928181342657204554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9132734645508081935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95b19dc922736094981196454036eba5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BillboardCanvas

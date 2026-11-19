@@ -5,6 +5,13 @@ public class PlayerHealthUI : MonoBehaviour
 {
     [SerializeField]
     Image healthBarFill;
+    private void Start()
+    {
+        if(healthBarFill == null)
+        {
+            healthBarFill = GameObject.Find("HealthBar").GetComponent<Image>();
+        }
+    }
     public void UpdateHealthBar(float currentHealth, float maxHealth)
     {
         if (healthBarFill != null)
