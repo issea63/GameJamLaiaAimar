@@ -3,6 +3,9 @@ using UnityEngine;
 public class BoostMovement : BoostStats
 {
     public PlayerMovement playerMovement;
+
+    public AudioSource boostObtained;
+
     private void Start()
     {
         playerMovement = PlayerMovement.Instance;
@@ -20,7 +23,7 @@ public class BoostMovement : BoostStats
             return;
 
         PlayerMovement playerMovement = PlayerMovement.Instance;
-
+        boostObtained.Play();
         if (playerMovement == null)
         {
             Debug.LogError("PlayerMovement.Instance es null.");
