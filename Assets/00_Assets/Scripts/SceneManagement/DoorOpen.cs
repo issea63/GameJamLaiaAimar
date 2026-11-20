@@ -1,22 +1,36 @@
 using DG.Tweening;
-using System.Collections;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class DoorOpen : MonoBehaviour
 {
-    Rigidbody rb;
+    private Rigidbody rb;
     public int doorOpenAmount;
-    private void Start()
+
+    private void Awake()
     {
         rb = GetComponent<Rigidbody>();
     }
-    public void CloseDoor()
-    {
-        DOTweenModulePhysics.DOLocalPath(rb, new Vector3[] { new Vector3(0, 0, doorOpenAmount), new Vector3(0, 0, 0) }, 2f, PathType.Linear);
-    }
+
     public void OpenDoor()
     {
-        DOTweenModulePhysics.DOLocalPath(rb, new Vector3[] { new Vector3(0, 0, 0), new Vector3(0, 0, doorOpenAmount) }, 2f, PathType.Linear);
+        if (rb == null)
+        {
+            Debug.LogError("DoorOpen needs a Rigidbody on the same GameObject.", this);
+            return;
+        }
+
+        rb.DOLocalPath(new[] { Vector3.zero, new Vector3(0, 0, doorOpenAmount) },2f, PathType.Linear);
+    }
+
+    public void CloseDoor()
+    {
+        if (rb == null)
+        {
+            Debug.LogError("DoorOpen needs a Rigidbody on the same GameObject.", this);
+            return;
+        }
+
+        rb.DOLocalPath(new[] { new Vector3(0, 0, doorOpenAmount), Vector3.zero }, 2f, PathType.Linear);
     }
 }
-
