@@ -500,7 +500,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyCombat
   attackSound: {fileID: 7648185173808700953}
-  attackAnimationDuration: 3
+  attackAnimationDuration: 1
 --- !u!114 &6762160664620418110
 MonoBehaviour:
   m_ObjectHideFlags: 0

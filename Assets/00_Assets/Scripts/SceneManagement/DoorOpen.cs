@@ -5,7 +5,7 @@ using UnityEngine;
 public class DoorOpen : MonoBehaviour
 {
     private Rigidbody rb;
-    public int doorOpenAmount;
+    public float doorOpenAmount;
 
     private void Awake()
     {

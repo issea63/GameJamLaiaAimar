@@ -9,6 +9,7 @@ public class ColliderScene : MonoBehaviour
     public AudioSource elevatorSound;
     [SerializeField]
     public SceneLoadStats sceneLoadStats;
+    public SceneLoadManager sceneLoadManager;
     private void Start()
     {
         if (sceneLoadStats == null)
@@ -19,6 +20,14 @@ public class ColliderScene : MonoBehaviour
         else
         {
             sceneLoadStats = SceneLoadStats.Instance;
+        }
+        if(sceneLoadManager == null)
+        {
+            GameObject sceneloadManager = new GameObject("SceneLoadManager");
+        }
+        else
+        {
+            sceneLoadManager = SceneLoadManager.instance;
         }
         //ResetLevelProbChance(.4f);
         cinemachineBasicMultiChannelPerlin = FindAnyObjectByType<CinemachineBasicMultiChannelPerlin>();
