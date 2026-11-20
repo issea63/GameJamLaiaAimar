@@ -1,104 +1,205 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
-    [SerializeField]
-    Animator animator;
-    EnemyMovement moveStats;
+    [SerializeField] private Animator animator;
+
     public float detectionRange = 5f;
     public LayerMask playerLayer;
-    public bool playerDetected = false;
-    NavMeshAgent agent;
+    public bool playerDetected;
+    public bool isAttacking;
     public Transform[] patrolPoints;
-    [SerializeField]
-    int patrolIndex = 0;
-    bool isPatrolling = true;
     public AudioSource walkSound;
-    EnemyCombatStats enemyCombatStats;
-    bool agentStopped = false;
-    EnemyCombat combat;
+
+    [SerializeField] private int patrolIndex;
+
+    private NavMeshAgent agent;
+    private EnemyCombatStats enemyCombatStats;
+    private Coroutine walkSoundCoroutine;
+
     private void Start()
     {
-        combat = GetComponent<EnemyCombat>();
-        enemyCombatStats = GetComponent<EnemyCombatStats>();
         agent = GetComponent<NavMeshAgent>();
-        animator = GetComponentInChildren<Animator>();
-        if (moveStats == null)
+        enemyCombatStats = GetComponent<EnemyCombatStats>();
+
+        if (animator == null)
         {
-            GameObject movementEnemyObject = new GameObject("MovementEnemy");
-            moveStats = movementEnemyObject.AddComponent<EnemyMovement>();
+            animator = GetComponentInChildren<Animator>();
         }
     }
+
     private void Update()
     {
-        DetectPlayer();
-        if (agent.isStopped)
+        if (isAttacking)
         {
-            agentStopped = true;
+            StopWalkSound();
+            return;
+        }
 
-        }
-        else
-        {
-            agentStopped = false;
-        }
+        DetectPlayer();
     }
-        
+
     public void DetectPlayer()
     {
-        Collider[] hits = Physics.OverlapSphere(transform.position,detectionRange,playerLayer);
-        agent.isStopped = false;
-        if (hits.Length > 0)
+        if (isAttacking)
         {
-            isPatrolling = false;
-            playerDetected = true;
-            agent.SetDestination(hits[0].transform.position);
-            if (walkSound != null && !agentStopped)
-            {
-                //walkSound.pitch = Random.Range(0.8f, 1.2f);
-                walkSound.Play();
-            }
-            else Debug.LogWarning("No walk sound assigned to the enemy.");
-            if(animator != null)
-            {
-                animator.SetBool("isWalking", false);
-            }
-            else Debug.LogWarning("Animator not assigned in EnemyController.");
+            StopWalkSound();
+            return;
         }
-        else
+
+        Collider[] hits = Physics.OverlapSphere(
+            transform.position,
+            detectionRange,
+            playerLayer
+        );
+
+        if (hits.Length == 0)
         {
             playerDetected = false;
             agent.isStopped = false;
             Patrol();
+            return;
+        }
+
+        playerDetected = true;
+        Transform playerTransform = hits[0].transform;
+
+        bool playerInAttackRange = Physics.OverlapSphere(
+            transform.position,
+            enemyCombatStats.attackRange,
+            playerLayer
+        ).Length > 0;
+
+        if (playerInAttackRange)
+        {
+            // No caminar ni reproducir el sonido dentro del rango de ataque.
+            StopWalkSound();
+            agent.isStopped = true;
+
+            if (animator != null)
+            {
+                animator.SetBool("isWalking", false);
+            }
+        }
+        else
+        {
+            agent.isStopped = false;
+            agent.SetDestination(playerTransform.position);
+            PlayWalkSound();
+
+            if (animator != null)
+            {
+                animator.SetBool("isWalking", true);
+            }
         }
     }
-    public void Patrol()
-    {
-        isPatrolling = true;
-        if (patrolPoints.Length == 0) return;
 
-        if (Vector3.Distance(transform.position, patrolPoints[patrolIndex].position) < agent.stoppingDistance && isPatrolling)
+    private void Patrol()
+    {
+        if (isAttacking || patrolPoints == null || patrolPoints.Length == 0)
+        {
+            StopWalkSound();
+            return;
+        }
+
+        agent.isStopped = false;
+
+        if (Vector3.Distance(
+                transform.position,
+                patrolPoints[patrolIndex].position
+            ) < agent.stoppingDistance)
         {
             patrolIndex = (patrolIndex + 1) % patrolPoints.Length;
         }
 
         agent.SetDestination(patrolPoints[patrolIndex].position);
-        if (walkSound != null && !agentStopped)
-        {
-            //walkSound.pitch = Random.Range(0.8f, 1.2f);
-            walkSound.Play();
-        }
-        else Debug.LogWarning("No walk sound assigned to the enemy.");
-        if(animator != null)
+        PlayWalkSound();
+
+        if (animator != null)
         {
             animator.SetBool("isWalking", true);
         }
-        else Debug.LogWarning("Animator not assigned in EnemyController.");
     }
-    public void OnDrawGizmos()
+
+    private void PlayWalkSound()
+    {
+        if (isAttacking ||
+            agent.isStopped ||
+            walkSound == null ||
+            IsPlayerInAttackRange())
+        {
+            StopWalkSound();
+            return;
+        }
+
+        if (walkSoundCoroutine == null)
+        {
+            walkSoundCoroutine = StartCoroutine(PlayWalkSoundCoroutine());
+        }
+    }
+
+    private bool IsPlayerInAttackRange()
+    {
+        if (enemyCombatStats == null)
+        {
+            return false;
+        }
+
+        Collider[] hits = Physics.OverlapSphere(
+            transform.position,
+            enemyCombatStats.attackRange,
+            playerLayer
+        );
+
+        return hits.Length > 0;
+    }
+
+    public void StopWalkSound()
+    {
+        if (walkSoundCoroutine != null)
+        {
+            StopCoroutine(walkSoundCoroutine);
+            walkSoundCoroutine = null;
+        }
+
+        if (walkSound != null)
+        {
+            walkSound.Stop();
+        }
+    }
+
+    private IEnumerator PlayWalkSoundCoroutine()
+    {
+        if (walkSound == null || isAttacking || IsPlayerInAttackRange())
+        {
+            walkSoundCoroutine = null;
+            yield break;
+        }
+
+        walkSound.Play();
+
+        while (walkSound != null &&
+               walkSound.isPlaying &&
+               !isAttacking &&
+               !IsPlayerInAttackRange())
+        {
+            yield return null;
+        }
+
+        if (walkSound != null &&
+            (isAttacking || IsPlayerInAttackRange()))
+        {
+            walkSound.Stop();
+        }
+
+        walkSoundCoroutine = null;
+    }
+
+    private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, detectionRange);
     }
-
 }

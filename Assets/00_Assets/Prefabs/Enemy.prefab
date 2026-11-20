@@ -120,7 +120,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 1fbc05877f74be14c98c4a4fde48d4d8, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.02
+  m_Volume: 0.01
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -500,6 +500,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyCombat
   attackSound: {fileID: 7648185173808700953}
+  attackAnimationDuration: 3
 --- !u!114 &6762160664620418110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -518,12 +519,13 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   playerDetected: 0
+  isAttacking: 0
   patrolPoints:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  patrolIndex: 0
   walkSound: {fileID: 1022721855742723510}
+  patrolIndex: 0
 --- !u!114 &519262816427296727
 MonoBehaviour:
   m_ObjectHideFlags: 0

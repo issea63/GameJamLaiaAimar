@@ -84,10 +84,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acba1283a1884754fbce7d2b4a173c42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ColliderScene
-  levelProbChance: 1
   cinemachineBasicMultiChannelPerlin: {fileID: 0}
   doorOpens: []
   elevatorSound: {fileID: 0}
+  sceneLoadStats: {fileID: 0}
 --- !u!54 &5642592685027834462
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -757,7 +757,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 8d79b714049787b49ac75f788fe68523, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.06
   m_Pitch: 1
   Loop: 0
   Mute: 0
