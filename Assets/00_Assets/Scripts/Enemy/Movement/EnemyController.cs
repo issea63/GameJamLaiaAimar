@@ -4,6 +4,7 @@ using UnityEngine.AI;
 public class EnemyController : MonoBehaviour
 {
     [SerializeField]
+    Animator animator;
     EnemyMovement moveStats;
     public float detectionRange = 5f;
     public LayerMask playerLayer;
@@ -22,6 +23,7 @@ public class EnemyController : MonoBehaviour
         combat = GetComponent<EnemyCombat>();
         enemyCombatStats = GetComponent<EnemyCombatStats>();
         agent = GetComponent<NavMeshAgent>();
+        animator = GetComponentInChildren<Animator>();
         if (moveStats == null)
         {
             GameObject movementEnemyObject = new GameObject("MovementEnemy");
@@ -57,6 +59,11 @@ public class EnemyController : MonoBehaviour
                 walkSound.Play();
             }
             else Debug.LogWarning("No walk sound assigned to the enemy.");
+            if(animator != null)
+            {
+                animator.SetBool("isWalking", false);
+            }
+            else Debug.LogWarning("Animator not assigned in EnemyController.");
         }
         else
         {
@@ -82,6 +89,11 @@ public class EnemyController : MonoBehaviour
             walkSound.Play();
         }
         else Debug.LogWarning("No walk sound assigned to the enemy.");
+        if(animator != null)
+        {
+            animator.SetBool("isWalking", true);
+        }
+        else Debug.LogWarning("Animator not assigned in EnemyController.");
     }
     public void OnDrawGizmos()
     {

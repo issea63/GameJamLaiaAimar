@@ -8,8 +8,10 @@ public class EnemyCombat : MonoBehaviour
     EnemyController enemyController;
     public AudioSource attackSound;
     NavMeshAgent agent;
+    Animator animator;
     private void Start()
     {
+        animator = GetComponentInChildren<Animator>();
         enemyCombatStats = GetComponent<EnemyCombatStats>();
         enemyController = GetComponent<EnemyController>();
         agent = GetComponent<NavMeshAgent>();
@@ -54,5 +56,13 @@ public class EnemyCombat : MonoBehaviour
             attackSound.Play();
         else
             Debug.LogWarning("No attack sound assigned to the enemy.");
+        if(animator != null)
+        {
+            animator.SetTrigger("Attack");
+        }
+        else
+        {
+            Debug.LogWarning("Animator not assigned in EnemyCombat.");
+        }
     }
 }

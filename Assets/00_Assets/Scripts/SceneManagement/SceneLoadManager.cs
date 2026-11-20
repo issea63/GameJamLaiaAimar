@@ -7,9 +7,22 @@ public class SceneLoadManager : SceneLoadStats
     private int finalLevelProbability = 0;
 
     private int currentSceneIndex;
+    #region Singleton
+    public static SceneLoadManager Instance;
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
+    #endregion
     private void Start()
     {
-        ResetLevelProbChance(.4f);
     }
     public void LoadRandomLevel()
     {

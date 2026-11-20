@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,11 +8,12 @@ public class EnemyHealth : Stats
     [SerializeField]
     float currentHealth;
     EnemyHealthUI healthUI;
-
+    Animator animator;
     public AudioSource enemyHitSound;
 
     private void Start()
     {
+        animator = GetComponentInChildren<Animator>();
         healthUI = GetComponent<EnemyHealthUI>();
         SetStat(ref currentHealth, maxHealth);
         healthUI.UpdateHealthBar(currentHealth, maxHealth);
@@ -23,11 +25,25 @@ public class EnemyHealth : Stats
         enemyHitSound.Play();
         if(currentHealth <= 0)
         {
-            Die();
+            Die();   
         }
     }
     private void Die()
     {
+        Destroy(gameObject);
+    }
+    public IEnumerator DieRoutine()
+    {
+        if(animator != null)
+        {
+            animator.SetBool("isWalking", false);
+            animator.SetTrigger("Die");
+        }
+        else
+        {
+            Debug.LogWarning("Animator not assigned in EnemyHealth.");
+        }
+        yield return new WaitForSeconds(1f);
         Destroy(gameObject);
     }
 }

@@ -7,9 +7,20 @@ public class ColliderScene : SceneLoadManager
     public CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin;
     public DoorOpen[] doorOpens;
     public AudioSource elevatorSound;
+    [SerializeField]
+    public SceneLoadStats sceneLoadStats;
     private void Start()
     {
-        ResetLevelProbChance(.4f);
+        if (sceneLoadStats == null)
+        {
+            GameObject playerMovementObject = new GameObject("SceneLoadStats");
+            sceneLoadStats = playerMovementObject.AddComponent<SceneLoadStats>();
+        }
+        else
+        {
+            sceneLoadStats = SceneLoadStats.Instance;
+        }
+        //ResetLevelProbChance(.4f);
         cinemachineBasicMultiChannelPerlin = FindAnyObjectByType<CinemachineBasicMultiChannelPerlin>();
         
         doorOpens = FindObjectsByType<DoorOpen>();
