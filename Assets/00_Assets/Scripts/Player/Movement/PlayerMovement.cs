@@ -3,8 +3,8 @@ using UnityEngine.SceneManagement;
 
 public class PlayerMovement : Stats
 {
-    public float speed = 15f;
-    public float jumpForce = 6f;
+    public float speed = 5f;
+    public float jumpForce = 4f;
     #region Singleton
     public static PlayerMovement Instance;
     private void Awake()
