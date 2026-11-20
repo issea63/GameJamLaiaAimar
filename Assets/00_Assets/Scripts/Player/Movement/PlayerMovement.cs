@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerMovement : Stats
 {
-    public float speed = 5f;
+    public float speed = 8f;
     public float jumpForce = 4f;
     #region Singleton
     public static PlayerMovement Instance;
@@ -36,11 +36,15 @@ public class PlayerMovement : Stats
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        BoostCanvas.Instance.UpdateText(1, "Speed: " + speed);
+        BoostCanvas.Instance.UpdateText(2, "Jump Force: " + jumpForce);
         Debug.Log($"Loaded scene: {scene.name} (mode: {mode})");
         if(SceneManager.GetActiveScene().name == "MainMenu")
         {
             ResetStat(ref speed, 8);
-            ResetStat(ref jumpForce, 5f);
+            ResetStat(ref jumpForce, 3f);
+            BoostCanvas.Instance.UpdateText(1, "Speed: " + speed);
+            BoostCanvas.Instance.UpdateText(2, "Jump Force: " + jumpForce);
         }
     }
 }

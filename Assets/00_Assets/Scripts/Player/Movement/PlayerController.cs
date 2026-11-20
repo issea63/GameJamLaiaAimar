@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     Transform cameraTransform;
     private void Start()
     {
+        Cursor.lockState = CursorLockMode.Locked;
         cameraTransform = Camera.main.transform;
         rb = GetComponent<Rigidbody>();
         if(PlayerMovement.Instance == null)

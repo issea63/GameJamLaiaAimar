@@ -2,7 +2,7 @@ using System.Collections;
 using Unity.Cinemachine;
 using UnityEngine;
 
-public class ColliderScene : SceneLoadManager
+public class ColliderScene : MonoBehaviour
 {
     public CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin;
     public DoorOpen[] doorOpens;
@@ -46,7 +46,7 @@ public class ColliderScene : SceneLoadManager
         yield return new WaitForSeconds(delayCloseDoor);
         cinemachineBasicMultiChannelPerlin.enabled = true;
         yield return new WaitForSeconds(delay);
-        LoadRandomLevel();
+        SceneLoadManager.instance.LoadRandomLevel();
     }
     public IEnumerator OnStart(float delay, float delayCamera)
     {

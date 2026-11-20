@@ -1,13 +1,21 @@
 using System;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BoostRandom : MonoBehaviour
 {
     [SerializeField] GameObject[] boostPrefabs;
-
+    [SerializeField] GameObject canvasBoost;
+    [SerializeField] GameObject canvasBoostPrefab;
     private void Start()
     {
+        canvasBoost = GameObject.Find("StatsCanvas");
+        if (canvasBoost == null)
+        {
+            Instantiate(canvasBoostPrefab);
+            canvasBoostPrefab.GetComponent<BoostCanvas>().TurnOnTexts();
+        }
         boostPrefabs = GameObject.FindGameObjectsWithTag("Boost");
         AddBoostScript();
     }
@@ -15,7 +23,7 @@ public class BoostRandom : MonoBehaviour
     {
         foreach (GameObject boost in boostPrefabs)
         {
-            int randomIndex = UnityEngine.Random.Range(0, 2);
+            int randomIndex = UnityEngine.Random.Range(0, 3);
             switch (randomIndex)
             {
                 case 0:

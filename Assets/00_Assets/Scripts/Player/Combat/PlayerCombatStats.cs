@@ -9,6 +9,12 @@ public class PlayerCombatStats : Stats
     public static PlayerCombatStats Instance;
     private void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         Instance = this;
         DontDestroyOnLoad(gameObject);
     }
@@ -41,11 +47,13 @@ public class PlayerCombatStats : Stats
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        BoostCanvas.Instance.UpdateText(0, "Damage: " + damage);
         Debug.Log($"Loaded scene: {scene.name} (mode: {mode})");
         if (SceneManager.GetActiveScene().name == "MainMenu")
         {
             ResetStat(ref damage, 8);
             ResetStat(ref cooldown, 1f);
+            BoostCanvas.Instance.UpdateText(3, "Damage: " + damage);
         }
     }
 }

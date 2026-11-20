@@ -8,22 +8,20 @@ public class SceneLoadManager : SceneLoadStats
 
     private int currentSceneIndex;
     #region Singleton
-    public static SceneLoadManager Instance;
+    public static SceneLoadManager instance;
     private void Awake()
     {
-        if (Instance != null && Instance != this)
+        if (instance != null && instance != this)
         {
             Destroy(gameObject);
             return;
         }
 
-        Instance = this;
+        instance = this;
         DontDestroyOnLoad(gameObject);
     }
     #endregion
-    private void Start()
-    {
-    }
+
     public void LoadRandomLevel()
     {
         currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
@@ -41,6 +39,7 @@ public class SceneLoadManager : SceneLoadStats
     }
     public void LastLevelLogic()
     {
+        levelProbChance = SceneLoadStats.Instance.levelProbChance;
         finalLevelProbability = Random.Range(0, 100);
         if (finalLevelProbability <= levelProbChance * 100)
         {
