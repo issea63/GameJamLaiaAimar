@@ -2,11 +2,9 @@ using UnityEngine;
 
 public class BoostCombat : BoostStats
 {
-    private void OnTriggerEnter(Collider other)
+    public override void ApplyBoost()
     {
-        if (!other.CompareTag("Player"))
-            return;
-
+        base.ApplyBoost();
         PlayerCombatStats playerCombat = PlayerCombatStats.Instance;
 
         if (playerCombat == null)

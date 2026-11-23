@@ -8,15 +8,12 @@ public class BoostFinalLevelProb : BoostStats
     {
         sceneLoadStats = SceneLoadStats.Instance;
     }
-
-    private void OnTriggerEnter(Collider other)
+    public override void ApplyBoost()
     {
-        if(other.CompareTag("Player"))
-        {
-            boostAmount = .2f;
-            SetStat(ref sceneLoadStats.levelProbChance, boostAmount);
-            BoostCanvas.Instance.UpdateText(3, "Final Level Chance: " + sceneLoadStats.levelProbChance);
-            gameObject.SetActive(false);
-        }
+        base.ApplyBoost();
+        boostAmount = .2f;
+        SetStat(ref sceneLoadStats.levelProbChance, boostAmount);
+        BoostCanvas.Instance.UpdateText(3, "Final Level Chance: " + sceneLoadStats.levelProbChance);
+        gameObject.SetActive(false);
     }
 }

@@ -3,8 +3,8 @@ using UnityEngine;
 public class BoostStats : Stats
 {
     public float boostAmount = 5f;
-    public void ApplyBoost(float currentAmount, float boostAmount)
+    public virtual void ApplyBoost()
     {
-        SetStat(ref currentAmount, boostAmount);
+        Debug.Log("No hay info");
     }
 }

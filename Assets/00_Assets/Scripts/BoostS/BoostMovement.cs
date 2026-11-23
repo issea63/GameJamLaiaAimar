@@ -17,12 +17,9 @@ public class BoostMovement : BoostStats
             playerMovement = PlayerMovement.Instance;
         }
     }
-    private void OnTriggerEnter(Collider other)
+    public override void ApplyBoost()
     {
-        if (!other.CompareTag("Player"))
-            return;
-
-        PlayerMovement playerMovement = PlayerMovement.Instance;
+        base.ApplyBoost();
         boostObtained.Play();
         if (playerMovement == null)
         {
@@ -31,7 +28,7 @@ public class BoostMovement : BoostStats
         }
         boostAmount = Random.Range(1, 4);
         int selectBoost = Random.Range(0, 2);
-        if(selectBoost > 0)
+        if (selectBoost > 0)
         {
             playerMovement.SetStat(ref playerMovement.speed, boostAmount);
             BoostCanvas.Instance.UpdateText(1, "Speed: " + playerMovement.speed);
@@ -44,4 +41,5 @@ public class BoostMovement : BoostStats
 
         gameObject.SetActive(false);
     }
+
 }
