@@ -5108,12 +5108,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ascensor
       objectReference: {fileID: 0}
+    - target: {fileID: 3721483045099232460, guid: 7a649c6c49bd3ce43ad3c8326e79cf3b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 3721483045099232460, guid: 7a649c6c49bd3ce43ad3c8326e79cf3b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.436
+      objectReference: {fileID: 0}
     - target: {fileID: 6954898685970131535, guid: 7a649c6c49bd3ce43ad3c8326e79cf3b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.61
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5882363678117023289, guid: 7a649c6c49bd3ce43ad3c8326e79cf3b, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a649c6c49bd3ce43ad3c8326e79cf3b, type: 3}
@@ -15768,6 +15777,14 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: -0.63
       objectReference: {fileID: 0}
+    - target: {fileID: 1830757516002953950, guid: 7a649c6c49bd3ce43ad3c8326e79cf3b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 1830757516002953950, guid: 7a649c6c49bd3ce43ad3c8326e79cf3b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.302
+      objectReference: {fileID: 0}
     - target: {fileID: 1867939440023624759, guid: 7a649c6c49bd3ce43ad3c8326e79cf3b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.22
@@ -15835,6 +15852,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 989522771462091751, guid: 7a649c6c49bd3ce43ad3c8326e79cf3b, type: 3}
+    - {fileID: 1193019263109517852, guid: 7a649c6c49bd3ce43ad3c8326e79cf3b, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 404520025902698, guid: 7a649c6c49bd3ce43ad3c8326e79cf3b, type: 3}
       insertIndex: -1

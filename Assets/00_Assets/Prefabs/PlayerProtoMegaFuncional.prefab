@@ -87,6 +87,8 @@ MonoBehaviour:
   cinemachineBasicMultiChannelPerlin: {fileID: 0}
   doorOpens: []
   elevatorSound: {fileID: 0}
+  panTilt: {fileID: 0}
+  camera: {fileID: 0}
   sceneLoadStats: {fileID: 0}
   sceneLoadManager: {fileID: 0}
 --- !u!54 &5642592685027834462
@@ -263,6 +265,7 @@ GameObject:
   - component: {fileID: 7953806297632565896}
   - component: {fileID: 2570768036423717990}
   - component: {fileID: 8660566630645777875}
+  - component: {fileID: 6885867501789997661}
   m_Layer: 6
   m_Name: PlayerProtoMegaFuncional
   m_TagString: Player
@@ -492,6 +495,14 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 7c02df2c-8cf9-412b-84c6-3d588af8f6ef
     m_ActionName: 'Player/Jump[/Keyboard/space]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 60fa4a19-203e-4d4f-a296-239656428423
+    m_ActionName: 'Player/Interact[/Keyboard/e]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d3dcd8ba-b96b-4303-bd19-21ad9d081fe9
+    m_ActionName: 'Menu/Escape[/Keyboard/escape]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -541,6 +552,23 @@ MonoBehaviour:
   attackSound: {fileID: 1841132376743361176}
   cooldownDuration: 1
   attackDuration: 0.5
+--- !u!114 &6885867501789997661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1361744010752938244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c76ab20afea2bd4ea0a1cdef4021daa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerInteract
+  interactDistance: 3
+  interactableLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  interactable: {fileID: 0}
 --- !u!1 &1698260369997574956
 GameObject:
   m_ObjectHideFlags: 0

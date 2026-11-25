@@ -3,6 +3,10 @@ using UnityEngine.SceneManagement;
 
 public class ChangeScenes : MonoBehaviour
 {
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.None;
+    }
     public void Play()
     {
         SceneLoadManager.instance.LoadRandomLevel();

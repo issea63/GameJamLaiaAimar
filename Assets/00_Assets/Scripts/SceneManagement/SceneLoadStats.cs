@@ -39,12 +39,12 @@ public class SceneLoadStats : Stats
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        BoostCanvas.Instance.UpdateText(3, "Final Level Chance: " + levelProbChance);
+        BoostCanvas.Instance.UpdateText(3, "Final Level Chance: " + levelProbChance * 100 + "%");
         Debug.Log($"Loaded scene: {scene.name} (mode: {mode})");
         if (SceneManager.GetActiveScene().name == "MainMenu")
         {
             ResetLevelProbChance(.4f);
-            BoostCanvas.Instance.UpdateText(0, "Final Level Chance: " + levelProbChance);
+            BoostCanvas.Instance.UpdateText(0, "Final Level Chance: " + levelProbChance * 100 + "%");
         }
         Cursor.lockState = CursorLockMode.None;
     }

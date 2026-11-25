@@ -35,6 +35,7 @@ public class SceneLoadManager : SceneLoadStats
             levelRandom = Random.Range(1, 4);
             LastLevelLogic();
         }
+        Cursor.lockState = CursorLockMode.None;
         SceneManager.LoadScene(levelRandom);
     }
     public void LastLevelLogic()

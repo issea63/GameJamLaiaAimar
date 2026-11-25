@@ -3,11 +3,21 @@ using UnityEngine;
 public class BoostMovement : BoostStats
 {
     public PlayerMovement playerMovement;
-
-    public AudioSource boostObtained;
+    int randomBoost;
 
     private void Start()
     {
+        randomBoost = Random.Range(0, 2);
+        if(randomBoost>0)
+        {
+            boostAmount = 3;
+            textSet = ("Speed + " + boostAmount);
+        }
+        else
+        {
+            boostAmount = 2;
+            textSet = ("Jump Force + " + boostAmount);
+        }
         playerMovement = PlayerMovement.Instance;
     }
     private void Update()
@@ -20,22 +30,24 @@ public class BoostMovement : BoostStats
     public override void ApplyBoost()
     {
         base.ApplyBoost();
-        boostObtained.Play();
         if (playerMovement == null)
         {
             Debug.LogError("PlayerMovement.Instance es null.");
             return;
         }
         boostAmount = Random.Range(1, 4);
-        int selectBoost = Random.Range(0, 2);
-        if (selectBoost > 0)
+        if (randomBoost > 0)
         {
+            boostAmount = 3;
             playerMovement.SetStat(ref playerMovement.speed, boostAmount);
+            boostAmount = 0;
             BoostCanvas.Instance.UpdateText(1, "Speed: " + playerMovement.speed);
         }
         else
         {
+            boostAmount = 2;
             playerMovement.SetStat(ref playerMovement.jumpForce, boostAmount);
+            boostAmount = 0;
             BoostCanvas.Instance.UpdateText(2, "Jump Force: " + playerMovement.jumpForce);
         }
 

@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Timers;
 using Unity.Cinemachine;
 using UnityEngine;
 
@@ -8,14 +9,19 @@ public class ColliderScene : MonoBehaviour
     public DoorOpen[] doorOpens;
     public AudioSource elevatorSound;
     [SerializeField]
+    CinemachinePanTilt panTilt;
+    [SerializeField]
+    CinemachineCamera camera;
+    [SerializeField]
     public SceneLoadStats sceneLoadStats;
     public SceneLoadManager sceneLoadManager;
     private void Start()
     {
         if (sceneLoadStats == null)
         {
-            GameObject playerMovementObject = new GameObject("SceneLoadStats");
-            sceneLoadStats = playerMovementObject.AddComponent<SceneLoadStats>();
+            GameObject sceneLoadObject = new GameObject("SceneLoadStats");
+            sceneLoadStats = sceneLoadObject.AddComponent<SceneLoadStats>();
+            sceneLoadStats = SceneLoadStats.Instance;
         }
         else
         {
@@ -23,7 +29,9 @@ public class ColliderScene : MonoBehaviour
         }
         if(sceneLoadManager == null)
         {
-            GameObject sceneloadManager = new GameObject("SceneLoadManager");
+            GameObject sceneloadManagerInstance = new GameObject("SceneLoadManager");
+            sceneLoadManager = sceneloadManagerInstance.AddComponent<SceneLoadManager>();
+            sceneLoadManager = SceneLoadManager.instance;
         }
         else
         {
@@ -55,6 +63,12 @@ public class ColliderScene : MonoBehaviour
         yield return new WaitForSeconds(delayCloseDoor);
         cinemachineBasicMultiChannelPerlin.enabled = true;
         yield return new WaitForSeconds(delay);
+        PlayerRotationOnLoad playerRotationOn = PlayerRotationOnLoad.Instance;
+        camera = FindAnyObjectByType<CinemachineCamera>();
+        panTilt = camera.GetComponent<CinemachinePanTilt>();
+        playerRotationOn.CopyRotation(panTilt.TiltAxis.Value, panTilt.PanAxis.Value);
+        PlayerPositionElevator elevatorPos = PlayerPositionElevator.Instance;
+        elevatorPos.CopyTransform();
         SceneLoadManager.instance.LoadRandomLevel();
     }
     public IEnumerator OnStart(float delay, float delayCamera)

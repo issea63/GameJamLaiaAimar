@@ -1,40 +1,55 @@
-using System;
-using Unity.Hierarchy;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerInteract : InteractStats
 {
-    [SerializeField] LayerMask interactableLayer;
-    [SerializeField] bool interacting;
-    [SerializeField] Interactable interactable;
+    [SerializeField] private LayerMask interactableLayer;
+    [SerializeField] private Interactable interactable;
+
+    private Camera mainCamera;
+
+    private void Awake()
+    {
+        mainCamera = Camera.main;
+    }
+
     private void Update()
     {
-        bool isHitting = Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, interactDistance, interactableLayer);
-        //interactable.ActivateCanvas();
-        interactable = hit.transform.GetComponent<Interactable>();
-        if (isHitting)
+        Interactable nextInteractable = null;
+
+        if (mainCamera != null && Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out RaycastHit hit, interactDistance, interactableLayer))
         {
-            interacting = true;
-            interactable.ActivateCanvas();
+            nextInteractable = hit.transform.GetComponent<Interactable>();
         }
-        else
-        {
-            interacting = false;
+
+        if (nextInteractable == interactable)
+            return;
+
+        if (interactable != null)
             interactable.DeactivateCanvas();
-        }
+
+        interactable = nextInteractable;
+
+        if (interactable != null)
+            interactable.ActivateCanvas();
     }
-    public void Interact()
+
+    public void Interact(InputAction.CallbackContext context)
     {
-        if (interacting)
-        {
-            interactable.GetComponent<BoostStats>().ApplyBoost();
-        }
-        else return;
+        if (interactable == null)
+            return;
+        if (context.performed) return;
+        if (interactable.TryGetComponent<BoostStats>(out BoostStats boostStats))
+            boostStats.ApplyBoost();
     }
+
     private void OnDrawGizmos()
     {
+        Camera cam = Camera.main;
+        if (cam == null)
+            return;
+
         Gizmos.color = Color.red;
-        Gizmos.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * interactDistance);
+        Gizmos.DrawRay(cam.transform.position, cam.transform.forward * interactDistance);
     }
 }
