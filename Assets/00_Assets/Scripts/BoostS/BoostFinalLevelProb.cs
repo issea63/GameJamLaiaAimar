@@ -16,7 +16,7 @@ public class BoostFinalLevelProb : BoostStats
         boostAmount = .2f;
         SetStat(ref sceneLoadStats.levelProbChance, boostAmount);
         boostAmount = 0;
-        BoostCanvas.Instance.UpdateText(3, "Final Level Chance: " + sceneLoadStats.levelProbChance * 100 + "%");
+        BoostCanvas.Instance.UpdateText(3, "<b>Final Level Chance:</b> " + sceneLoadStats.levelProbChance * 100 + "%");
         gameObject.SetActive(false);
     }
 }

@@ -20,7 +20,7 @@ public class BoostCombat : BoostStats
         boostAmount = 4;
         playerCombat.SetStat(ref playerCombat.damage, boostAmount);
         boostAmount = 0;
-        BoostCanvas.Instance.UpdateText(0, "Damage: " + playerCombat.damage);
+        BoostCanvas.Instance.UpdateText(0, "<b>Damage:</b> " + playerCombat.damage);
         gameObject.SetActive(false);
     }
 }

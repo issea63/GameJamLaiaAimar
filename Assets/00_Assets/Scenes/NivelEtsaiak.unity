@@ -13804,6 +13804,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 269412859026417131, guid: d669247627ce67448acc579d8c7be21e, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 7633049218723553068, guid: 70e92c72b8827b6408b95398c7e9f5d2, type: 3}
     - target: {fileID: 956104558852106695, guid: d669247627ce67448acc579d8c7be21e, type: 3}
       propertyPath: m_Volume
       value: 0.06
@@ -13811,6 +13815,10 @@ PrefabInstance:
     - target: {fileID: 1361744010752938244, guid: d669247627ce67448acc579d8c7be21e, type: 3}
       propertyPath: m_Name
       value: PlayerProtoMegaFuncional
+      objectReference: {fileID: 0}
+    - target: {fileID: 1760720695733987141, guid: d669247627ce67448acc579d8c7be21e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5701156228807531086, guid: d669247627ce67448acc579d8c7be21e, type: 3}
       propertyPath: m_LocalScale.x

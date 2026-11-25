@@ -9,8 +9,8 @@ public class PlayerHealthUI : MonoBehaviour
     {
         if (healthBarFill == null)
         {
-            healthBarFill = GameObject.Find("HealthBar").GetComponent<Image>();
             if (healthBarFill == null) Debug.LogWarning("No hay barra de vida");
+            healthBarFill = GameObject.Find("HealthBar").GetComponent<Image>();
         }
         else
         {

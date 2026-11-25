@@ -41,14 +41,14 @@ public class BoostMovement : BoostStats
             boostAmount = 3;
             playerMovement.SetStat(ref playerMovement.speed, boostAmount);
             boostAmount = 0;
-            BoostCanvas.Instance.UpdateText(1, "Speed: " + playerMovement.speed);
+            BoostCanvas.Instance.UpdateText(1, "<b>Speed:</b> " + playerMovement.speed);
         }
         else
         {
             boostAmount = 2;
             playerMovement.SetStat(ref playerMovement.jumpForce, boostAmount);
             boostAmount = 0;
-            BoostCanvas.Instance.UpdateText(2, "Jump Force: " + playerMovement.jumpForce);
+            BoostCanvas.Instance.UpdateText(2, "<b>Jump Force:</b> " + playerMovement.jumpForce);
         }
 
         gameObject.SetActive(false);
