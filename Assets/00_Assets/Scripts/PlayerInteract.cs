@@ -39,8 +39,15 @@ public class PlayerInteract : InteractStats
         if (interactable == null)
             return;
         if (context.performed) return;
+        if (context.canceled) return;
         if (interactable.TryGetComponent<BoostStats>(out BoostStats boostStats))
+        {
             boostStats.ApplyBoost();
+        }
+        if(interactable.TryGetComponent<NextLevelLogic>(out NextLevelLogic nextLevel))
+        {
+            nextLevel.SceneLoad();
+        }
     }
 
     private void OnDrawGizmos()

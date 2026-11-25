@@ -10,6 +10,7 @@ TagManager:
   - GroundPlataformas
   - Enemy
   - Boost
+  - MenuUI
   layers:
   - Default
   - TransparentFX

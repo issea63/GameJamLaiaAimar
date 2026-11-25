@@ -42,7 +42,7 @@ public class PlayerMovement : Stats
         if(SceneManager.GetActiveScene().name == "MainMenu")
         {
             ResetStat(ref speed, 8);
-            ResetStat(ref jumpForce, 3f);
+            ResetStat(ref jumpForce, 4f);
             BoostCanvas.Instance.UpdateText(1, "Speed: " + speed);
             BoostCanvas.Instance.UpdateText(2, "Jump Force: " + jumpForce);
         }

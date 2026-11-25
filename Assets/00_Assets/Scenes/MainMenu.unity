@@ -735,7 +735,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MovementPlayer
   speed: 8
-  jumpForce: 5
+  jumpForce: 4
 --- !u!4 &895630832
 Transform:
   m_ObjectHideFlags: 0
@@ -1864,7 +1864,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4152178035406559544, guid: e9be2c52ce61ac84295603a7cc9e279b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -632
+      value: -786
       objectReference: {fileID: 0}
     - target: {fileID: 4152178035406559544, guid: e9be2c52ce61ac84295603a7cc9e279b, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1872,7 +1872,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4771425245267800747, guid: e9be2c52ce61ac84295603a7cc9e279b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -632
+      value: -786
       objectReference: {fileID: 0}
     - target: {fileID: 4771425245267800747, guid: e9be2c52ce61ac84295603a7cc9e279b, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1884,7 +1884,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6488062669937318630, guid: e9be2c52ce61ac84295603a7cc9e279b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -632
+      value: -786
       objectReference: {fileID: 0}
     - target: {fileID: 6488062669937318630, guid: e9be2c52ce61ac84295603a7cc9e279b, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1972,7 +1972,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7832574601166985498, guid: e9be2c52ce61ac84295603a7cc9e279b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -632
+      value: -786
       objectReference: {fileID: 0}
     - target: {fileID: 7832574601166985498, guid: e9be2c52ce61ac84295603a7cc9e279b, type: 3}
       propertyPath: m_AnchoredPosition.y

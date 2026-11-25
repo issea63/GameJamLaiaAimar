@@ -8,7 +8,7 @@ public class BoostFinalLevelProb : BoostStats
     {
         boostAmount = .2f;
         sceneLoadStats = SceneLoadStats.Instance;
-        textSet = ("Final Level Prob. + " + boostAmount);
+        textSet = ("Final Level Prob. + " + boostAmount*100 + "%");
     }
     public override void ApplyBoost()
     {

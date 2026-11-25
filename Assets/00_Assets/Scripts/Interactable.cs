@@ -20,10 +20,10 @@ public class Interactable : MonoBehaviour
         }
         else canvas.AddComponent<BillboardCanvas>();
 
-        text = canvas.GetComponentInChildren<TextMeshProUGUI>();
+        //text = canvas.GetComponentInChildren<TextMeshProUGUI>();
         if(stats == null) stats = GetComponent<BoostStats>();
-
-        text.text = stats.textSet;
+        if (stats != null) text.text = stats.textSet;
+        else return;
     }
     public void DeactivateCanvas()
     {
