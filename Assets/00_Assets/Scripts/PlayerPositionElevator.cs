@@ -1,14 +1,14 @@
-using Unity.Cinemachine;
-using Unity.VisualScripting;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UIElements;
 
 public class PlayerPositionElevator : MonoBehaviour
 {
-    #region Singleton
-
     public static PlayerPositionElevator Instance;
+
+    [SerializeField] private Vector3 position;
+    private bool hasSavedPosition;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -20,9 +20,7 @@ public class PlayerPositionElevator : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
     }
-    #endregion
 
-    [SerializeField] Vector3 position;
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -42,15 +40,27 @@ public class PlayerPositionElevator : MonoBehaviour
             return;
 
         position = spawnExit.transform.InverseTransformPoint(player.transform.position);
+        hasSavedPosition = true;
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        if (hasSavedPosition)
+            StartCoroutine(PlacePlayerAfterLoad());
+    }
+
+    private IEnumerator PlacePlayerAfterLoad()
+    {
+        yield return null;
+
         PlayerController player = FindAnyObjectByType<PlayerController>();
         GameObject spawnEnter = GameObject.Find("SpawnEnter");
 
         if (player == null || spawnEnter == null)
-            return;
+        {
+            Debug.LogWarning("No se encontró el jugador o SpawnEnter.");
+            yield break;
+        }
 
         player.transform.position = spawnEnter.transform.TransformPoint(position);
     }

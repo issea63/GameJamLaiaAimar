@@ -4,9 +4,11 @@ using UnityEngine.SceneManagement;
 
 public class PlayerRotationOnLoad : MonoBehaviour
 {
-    #region Singleton
+    public static PlayerRotationOnLoad Instance { get; private set; }
 
-    public static PlayerRotationOnLoad Instance;
+    [SerializeField] private float pan;
+    [SerializeField] private float tilt;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -18,11 +20,7 @@ public class PlayerRotationOnLoad : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
     }
-    #endregion
 
-    [SerializeField] Quaternion rotation;
-
-    Camera cam;
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -33,16 +31,31 @@ public class PlayerRotationOnLoad : MonoBehaviour
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
+    public void CopyRotation(float panValue, float tiltValue)
+    {
+        pan = panValue;
+        tilt = tiltValue;
+    }
+
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         CinemachineCamera camera = FindAnyObjectByType<CinemachineCamera>();
+
+        if (camera == null)
+        {
+            Debug.LogWarning($"No se encontró una CinemachineCamera en {scene.name}.");
+            return;
+        }
+
         CinemachinePanTilt panTilt = camera.GetComponent<CinemachinePanTilt>();
-        panTilt.PanAxis.Value = rotation.y;
-        panTilt.TiltAxis.Value = rotation.x;
-    }
-    public void CopyRotation(float vectorX, float vectorY)
-    {
-        rotation.x = vectorX;
-        rotation.y = vectorY;
+
+        if (panTilt == null)
+        {
+            Debug.LogWarning("La CinemachineCamera no tiene el componente CinemachinePanTilt.");
+            return;
+        }
+
+        panTilt.PanAxis.Value = pan;
+        panTilt.TiltAxis.Value = tilt;
     }
 }
