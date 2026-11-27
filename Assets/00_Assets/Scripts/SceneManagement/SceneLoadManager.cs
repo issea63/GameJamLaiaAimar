@@ -40,9 +40,9 @@ public class SceneLoadManager : SceneLoadStats
     }
     public void LastLevelLogic()
     {
-        levelProbChance = SceneLoadStats.Instance.levelProbChance;
+        finalLevelProb = SceneLoadStats.Instance.finalLevelProb;
         finalLevelProbability = Random.Range(0, 100);
-        if (finalLevelProbability <= levelProbChance * 100)
+        if (finalLevelProbability <= finalLevelProb * 100)
         {
             levelRandom = 3;
         }

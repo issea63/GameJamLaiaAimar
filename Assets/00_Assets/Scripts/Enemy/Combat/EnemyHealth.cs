@@ -23,6 +23,8 @@ public class EnemyHealth : Stats
         SetStat(ref currentHealth, -damage);
         healthUI.UpdateHealthBar(currentHealth, maxHealth);
         enemyHitSound.Play();
+        EnemyHitGlow hitGlow = GetComponent<EnemyHitGlow>();
+        hitGlow.GlowHit();
         if(currentHealth <= 0)
         {
             Die();   

@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -17,15 +18,16 @@ public class SceneLoadStats : Stats
         DontDestroyOnLoad(gameObject);
     }
     #endregion
-    public float levelProbChance = .4f;
+    public float finalLevelProb = .4f;
+    [SerializeField] float originalLevelProb = .4f;
 
     private void Start()
     {
-        SetStat(ref levelProbChance, 0);
+        ResetLevelProbChance(originalLevelProb);
     }
     public void ResetLevelProbChance(float chance)
     {
-        ResetStat(ref levelProbChance, .4f);
+        ResetStat(ref finalLevelProb, chance);
     }
     private void OnEnable()
     {
@@ -39,12 +41,12 @@ public class SceneLoadStats : Stats
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        BoostCanvas.Instance.UpdateText(3, "Final Level Chance: " + levelProbChance * 100 + "%");
+        BoostCanvas.Instance.UpdateText(3, "Final Level Chance: " + finalLevelProb * 100 + "%");
         Debug.Log($"Loaded scene: {scene.name} (mode: {mode})");
         if (SceneManager.GetActiveScene().name == "MainMenu")
         {
-            ResetLevelProbChance(.4f);
-            BoostCanvas.Instance.UpdateText(0, "Final Level Chance: " + levelProbChance * 100 + "%");
+            ResetLevelProbChance(originalLevelProb);
+            BoostCanvas.Instance.UpdateText(3, "Final Level Chance: " + finalLevelProb * 100 + "%");
         }
         Cursor.lockState = CursorLockMode.None;
     }

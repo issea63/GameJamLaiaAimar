@@ -31,7 +31,7 @@ public class PlayerRotationOnLoad : MonoBehaviour
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
-    public void CopyRotation(float panValue, float tiltValue)
+    public void CopyRotation(float tiltValue, float panValue)
     {
         pan = panValue;
         tilt = tiltValue;

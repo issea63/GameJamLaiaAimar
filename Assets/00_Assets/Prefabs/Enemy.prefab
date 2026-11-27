@@ -369,6 +369,7 @@ GameObject:
   - component: {fileID: 6582090264468162393}
   - component: {fileID: 8965836492808938988}
   - component: {fileID: 2133831972917722234}
+  - component: {fileID: 6826674068159172425}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -591,6 +592,20 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   enemyHitSound: {fileID: 7535828869694037103}
+--- !u!114 &6826674068159172425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2574224275642452221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1140c59ee89a4a847851ce7996ab03ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyHitGlow
+  material: {fileID: 2100000, guid: ae45236593e0e9540986c420a153d68d, type: 2}
+  isHit: 0
 --- !u!1 &4380373303273890626
 GameObject:
   m_ObjectHideFlags: 0
@@ -1127,6 +1142,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: eda0332f23034cc429e7564b5dade74a, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: eda0332f23034cc429e7564b5dade74a, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: ae45236593e0e9540986c420a153d68d, type: 2}
+    - target: {fileID: -7511558181221131132, guid: eda0332f23034cc429e7564b5dade74a, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 1393c215bb9d7c748a19b3c7c1ae3d5d, type: 2}
     - target: {fileID: 919132149155446097, guid: eda0332f23034cc429e7564b5dade74a, type: 3}
       propertyPath: m_Name
       value: enemy

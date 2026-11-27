@@ -148,7 +148,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb70a657b2c45bf49acecb20285e037c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneLoadStats
-  levelProbChance: 0.4
+  finalLevelProb: 0.4
+  originalLevelProb: 0.1
 --- !u!4 &36301972
 Transform:
   m_ObjectHideFlags: 0
@@ -566,7 +567,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 213c32893c06a8e4cb9cd3b2471f9df9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneLoadManager
-  levelProbChance: 0.4
+  finalLevelProb: 0.4
+  originalLevelProb: 0.1
 --- !u!4 &689757112
 Transform:
   m_ObjectHideFlags: 0
@@ -655,7 +657,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b868723c6de6fc47a3b015dc45124e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerRotationOnLoad
-  rotation: {x: 0, y: 0, z: 0, w: 0}
+  pan: 0
+  tilt: 0
 --- !u!4 &753828730
 Transform:
   m_ObjectHideFlags: 0
@@ -842,6 +845,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCombatStats
   damage: 15
   cooldown: 1
+  originalDamage: 8
 --- !u!1 &1153524911
 GameObject:
   m_ObjectHideFlags: 0

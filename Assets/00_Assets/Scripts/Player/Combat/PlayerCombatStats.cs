@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -5,6 +6,7 @@ public class PlayerCombatStats : Stats
 {
     public float damage = 15f;
     public float cooldown = 1f;
+    [SerializeField] float originalDamage = 8f;
     #region Singleton
     public static PlayerCombatStats Instance;
     private void Awake()
@@ -21,7 +23,7 @@ public class PlayerCombatStats : Stats
     #endregion
     private void Start()
     {
-        SetStat(ref damage, 0);
+        ResetStat(ref damage, originalDamage);
         SetStat(ref cooldown, 0);
     }
     private void Update()
@@ -51,7 +53,7 @@ public class PlayerCombatStats : Stats
         Debug.Log($"Loaded scene: {scene.name} (mode: {mode})");
         if (SceneManager.GetActiveScene().name == "MainMenu")
         {
-            ResetStat(ref damage, 8);
+            ResetStat(ref damage, originalDamage);
             ResetStat(ref cooldown, 1f);
             BoostCanvas.Instance.UpdateText(3, "Damage: " + damage);
         }
